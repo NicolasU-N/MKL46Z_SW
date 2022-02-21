@@ -10,7 +10,6 @@
 #define ST1 1
 #define ST2 2
 #define ST3 3
-
 /*******************************************************************************
  * Prototypes
  ******************************************************************************/
@@ -54,11 +53,8 @@ void readSwOn(void) {
 		turnOn = 2;
 		PTE->PCOR = (1U << 6U); //OFF led Toggle on target S3
 	}
-	if (state == ST2) {
-		lasTurnOn = turnOn;
-	} else {
-		lasTurnOn = -1;
-	}
+
+	lasTurnOn = (state == ST2) ? turnOn : -1;
 }
 
 void PIT_IRQHandler(void) {
